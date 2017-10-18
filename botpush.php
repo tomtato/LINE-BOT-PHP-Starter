@@ -44,5 +44,5 @@ if (!is_null($events['events'])) {
 		}
 	}
 }else{
-	echo "not events : ".$events['events'];
+	echo "not events push notification : ".$events['events'];
 }

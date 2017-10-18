@@ -44,4 +44,7 @@ if (!is_null($events['events'])) {
 		}
 	}
 }
-echo "OK";
+else{
+	echo "not events reply : ".$events['events'];
+}
+
