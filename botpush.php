@@ -43,5 +43,6 @@ if (!is_null($events['events'])) {
 			echo $result . "\r\n";
 		}
 	}
+}else{
+	echo "not events : ".$events['events'];
 }
-echo "OK";
