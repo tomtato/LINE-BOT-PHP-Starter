@@ -1,29 +1,26 @@
 <?php
 
-define("LINE_MESSAGING_API_CHANNEL_SECRET", '75c03f392f6e53d662d6f5a8db9e421f
-Issue');
-define("LINE_MESSAGING_API_CHANNEL_TOKEN", '1541414817');
+
 
 require "vendor/autoload.php";
-require "vendor/linecorp/line-bot-sdk/src/LINEBot";
 
-$bot = new vendor\linecorp\line-bot-sdk\src\LINEBot\LINE\LINEBot(
-    new vendor\linecorp\line-bot-sdk\src\LINEBot\HTTPClient\CurlHTTPClient(LINE_MESSAGING_API_CHANNEL_TOKEN),
-    ['channelSecret' => LINE_MESSAGING_API_CHANNEL_SECRET]
-);
 
-// $signature = $_SERVER["HTTP_".\LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
-// $body = file_get_contents("php://input");
+$ch = curl_init();
 
-// $events = $bot->parseEventRequest($body, $signature);
+curl_setopt($ch, CURLOPT_URL, "https://api.line.me/v2/bot/group/1541414817/member/Uffa138efe037e6e889d0b0f4a871c005");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 
-// foreach ($events as $event) {
-//     if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {
-//         $reply_token = $event->getReplyToken();
-//         $text = $event->getText();
-//         $bot->replyText($reply_token, $text);
-//     }
-// }
 
-echo $bot;
+$headers = array();
+$headers[] = "Authorization: Bearer 75c03f392f6e53d662d6f5a8db9e421f";
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$result = curl_exec($ch);
+if (curl_errno($ch)) {
+    echo 'Error:' . curl_error($ch);
+}
+
+echo $result ;
+curl_close ($ch);
 
