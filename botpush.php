@@ -13,7 +13,7 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 
 
 $headers = array();
-$headers[] = "Authorization: Bearer Uffa138efe037e6e889d0b0f4a871c005";
+$headers[] = "Authorization: Bearer u2e0cc06232508ddd44e6a79eb0e764bb";
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 $result = curl_exec($ch);
