@@ -5,11 +5,12 @@ Issue');
 define("LINE_MESSAGING_API_CHANNEL_TOKEN", '1541414817');
 
 require "vendor/autoload.php";
+require "vendor/linecorp/line-bot-sdk/src/LINEBot";
 
-// $bot = new \LINE\LINEBot(
-//     new \LINE\LINEBot\HTTPClient\CurlHTTPClient(LINE_MESSAGING_API_CHANNEL_TOKEN),
-//     ['channelSecret' => LINE_MESSAGING_API_CHANNEL_SECRET]
-// );
+$bot = new vendor\linecorp\line-bot-sdk\src\LINEBot\LINE\LINEBot(
+    new vendor\linecorp\line-bot-sdk\src\LINEBot\HTTPClient\CurlHTTPClient(LINE_MESSAGING_API_CHANNEL_TOKEN),
+    ['channelSecret' => LINE_MESSAGING_API_CHANNEL_SECRET]
+);
 
 // $signature = $_SERVER["HTTP_".\LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 // $body = file_get_contents("php://input");
@@ -24,5 +25,5 @@ require "vendor/autoload.php";
 //     }
 // }
 
-echo "test";
+echo $bot;
 
