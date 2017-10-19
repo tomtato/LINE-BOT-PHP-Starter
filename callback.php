@@ -22,4 +22,4 @@ foreach ($events as $event) {
     }
 }
 
-echo $events;
+echo 'OK';
