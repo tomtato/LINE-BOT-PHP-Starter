@@ -8,7 +8,7 @@ $access_token = 'qFYA2+S09Lq3O63m8YkZQfS7Q5c3MUBgi70fvM7IMCvVMU1qvJ+UbVWJtHnonKA
 
 $userId = 'Uffa138efe037e6e889d0b0f4a871c005';
 
-$url = 'https://api.line.me/v2/bot/group/75c03f392f6e53d662d6f5a8db9e421f/member/'.$userId;
+$url = 'https://api.line.me/v2/bot/group/1541414817/member/'.$userId;
 
 $headers = array('Authorization: Bearer ' . $access_token);
 
