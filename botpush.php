@@ -6,10 +6,10 @@ define("LINE_MESSAGING_API_CHANNEL_TOKEN", '1541414817');
 
 require "vendor/autoload.php";
 
-$bot = new \LINE\LINEBot(
-    new \LINE\LINEBot\HTTPClient\CurlHTTPClient(LINE_MESSAGING_API_CHANNEL_TOKEN),
-    ['channelSecret' => LINE_MESSAGING_API_CHANNEL_SECRET]
-);
+// $bot = new \LINE\LINEBot(
+//     new \LINE\LINEBot\HTTPClient\CurlHTTPClient(LINE_MESSAGING_API_CHANNEL_TOKEN),
+//     ['channelSecret' => LINE_MESSAGING_API_CHANNEL_SECRET]
+// );
 
 // $signature = $_SERVER["HTTP_".\LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
 // $body = file_get_contents("php://input");
@@ -24,5 +24,5 @@ $bot = new \LINE\LINEBot(
 //     }
 // }
 
-echo $bot ;
+echo "test";
 
