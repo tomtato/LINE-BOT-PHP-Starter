@@ -23,7 +23,7 @@ $post = json_encode($data);
 // $result = curl_exec($ch);
 // curl_close($ch);
 
-print_r($post["output_urls"]);
+print_r($post);
 
 
 
