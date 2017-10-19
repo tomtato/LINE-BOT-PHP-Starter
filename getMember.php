@@ -6,15 +6,24 @@ require "vendor/autoload.php";
 
 $access_token = 'qFYA2+S09Lq3O63m8YkZQfS7Q5c3MUBgi70fvM7IMCvVMU1qvJ+UbVWJtHnonKAnCWfErIDro07BnZNggJmXJChXTIlMPo8LRJ+n1LEgbRViXziTGtdULF4TXqNDretymx0c/7xoEW/jGKM2rJcQHQdB04t89/1O/w1cDnyilFU=';
 
-$channelSecret = '75c03f392f6e53d662d6f5a8db9e421f';
+// Get POST body content
+$content = file_get_contents('php://input');
+// Parse JSON
+$events = json_decode($content, true);
 
-$httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
-$bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
+$post = json_encode($data);
+// $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-// $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
-$response = $bot->getRoomMemberProfile('Uffa138efe037e6e889d0b0f4a871c005', $textMessageBuilder);
+// $ch = curl_init($url);
+// curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+// curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+// $result = curl_exec($ch);
+// curl_close($ch);
 
-echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+print_r($post["output_urls"]);
 
 
 
