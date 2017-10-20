@@ -1,7 +1,7 @@
 <?php // callback.php
 
 require "vendor/autoload.php";
-require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
+require_once('./LINEBotTiny.php');
 
 $channelAccessToken = "qFYA2+S09Lq3O63m8YkZQfS7Q5c3MUBgi70fvM7IMCvVMU1qvJ+UbVWJtHnonKAnCWfErIDro07BnZNggJmXJChXTIlMPo8LRJ+n1LEgbRViXziTGtdULF4TXqNDretymx0c/7xoEW/jGKM2rJcQHQdB04t89/1O/w1cDnyilFU="; 
 
@@ -15,7 +15,7 @@ $channelSecret = '75c03f392f6e53d662d6f5a8db9e421f';
 
 // echo "test";
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
-echo  $client->parseEvents() ;
+echo  $client->sign("events") ;
 
 
 
