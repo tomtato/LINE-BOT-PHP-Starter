@@ -16,17 +16,17 @@ $channelSecret = '75c03f392f6e53d662d6f5a8db9e421f';
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 // echo  $client->sign("events") ;
 
-$userId 	= $client->parseEvents()['source']['userId'];
+// $userId 	= $client->parseEvents()[0]['source']['userId'];
 // $replyToken = $client->parseEvents()[0]['replyToken'];
 // $timestamp	= $client->parseEvents()[0]['timestamp'];
 // $message 	= $client->parseEvents()[0]['message'];
 // $messageid 	= $client->parseEvents()[0]['message']['id'];
-$profil = $client->profil($userId);
+// $profil = $client->profil($userId);
 // $message 	= $client->parseEvents()[0]['message'];
 // echo "user id : ".$userId ;
 // // echo "client : ".$client ;
-echo $userId ;
-// var_dump($client->parseEvents());
+echo $client->replyMessage("testt");
+var_dump($client->parseEvents());
 // foreach ($client->parseEvents() as $event) {
 //     switch ($event['type']) {
 //         case 'message':
