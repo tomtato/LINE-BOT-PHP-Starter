@@ -14,7 +14,7 @@ $channelSecret = '75c03f392f6e53d662d6f5a8db9e421f';
 // echo $signature;
 
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
-// echo  $client->sign("events") ;
+echo  $client->sign("events") ;
 
 // $userId 	= $client->parseEvents()[0]['source']['userId'];
 // $replyToken = $client->parseEvents()[0]['replyToken'];
@@ -25,7 +25,7 @@ $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 // $message 	= $client->parseEvents()[0]['message'];
 // echo "user id : ".$userId ;
 // // echo "client : ".$client ;
-print_r($client->replyMessage("testt"));
+// print_r($client->replyMessage("testt"));
 // var_dump($client->parseEvents());
 // foreach ($client->parseEvents() as $event) {
 //     switch ($event['type']) {
