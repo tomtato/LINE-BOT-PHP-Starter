@@ -16,7 +16,7 @@ $channelSecret = '75c03f392f6e53d662d6f5a8db9e421f';
 // echo "test";
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 print_r($client);
-echo $client->sign("events");
+echo "sign : ". $client->sign("events");
 // echo "client : ".$client ;
 foreach ($client->parseEvents() as $event) {
     switch ($event['type']) {
