@@ -30,6 +30,7 @@ foreach ($client->parseEvents() as $event) {
                             )
                         )
                     ));
+                    echo $client;
                     break;
                 default:
                     error_log("Unsupporeted message type: " . $message['type']);
