@@ -61,12 +61,12 @@ class LINEBotTiny
 
     public function parseEvents()
     {
-        // if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        //     http_response_code(405);
-        //     error_log("Method not allowed");
-        //     return "Method not allowed";
-        //     // exit();
-        // }
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            error_log("Method not allowed");
+            return "Method not allowed";
+            // exit();
+        }
 
         $entityBody = file_get_contents('php://input');
 
@@ -122,4 +122,73 @@ class LINEBotTiny
         $signature = base64_encode($hash);
         return $signature;
     }
+
+     public function profil($userId)
+    {
+      
+        return json_decode(exec_get('https://api.line.me/v2/bot/profile/'.$userId,$this->channelAccessToken));
+       
+    }
 }
+
+function exec_get($fullurl,$channelAccessToken)
+{
+        
+        $header = array(
+            "Content-Type: application/json",
+            'Authorization: Bearer '.$channelAccessToken,
+        );
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);        
+        curl_setopt($ch, CURLOPT_FAILONERROR, 0);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($ch, CURLOPT_URL, $fullurl);
+        
+        $returned =  curl_exec($ch);
+    
+        return($returned);
+}
+function exec_url($fullurl,$channelAccessToken,$message)
+{
+        
+        $header = array(
+            "Content-Type: application/json",
+            'Authorization: Bearer '.$channelAccessToken,
+        );
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_POST,           1 );
+        curl_setopt($ch, CURLOPT_POSTFIELDS,     $message); 
+        curl_setopt($ch, CURLOPT_FAILONERROR, 0);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($ch, CURLOPT_URL, $fullurl);
+        
+        $returned =  curl_exec($ch);
+    
+        return($returned);
+}
+function exec_url_aja($fullurl)
+    {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_VERBOSE, 1);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_FAILONERROR, 0);
+            curl_setopt($ch, CURLOPT_URL, $fullurl);
+            
+            $returned =  curl_exec($ch);
+        
+            return($returned);
+    }

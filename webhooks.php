@@ -17,10 +17,15 @@ $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 // echo  $client->sign("events") ;
 
 $userId 	= $client->parseEvents()[0]['source']['userId'];
+// $replyToken = $client->parseEvents()[0]['replyToken'];
+// $timestamp	= $client->parseEvents()[0]['timestamp'];
+// $message 	= $client->parseEvents()[0]['message'];
+// $messageid 	= $client->parseEvents()[0]['message']['id'];
+$profil = $client->profil($userId);
 // $message 	= $client->parseEvents()[0]['message'];
 // echo "user id : ".$userId ;
 // // echo "client : ".$client ;
-
+echo $profil ;
 var_dump($client->parseEvents());
 // foreach ($client->parseEvents() as $event) {
 //     switch ($event['type']) {
