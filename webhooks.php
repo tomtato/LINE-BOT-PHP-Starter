@@ -14,12 +14,16 @@ $channelSecret = '75c03f392f6e53d662d6f5a8db9e421f';
 // echo $signature;
 
 // echo "test";
-// $client = new LINEBotTiny($channelAccessToken, $channelSecret);
-print_r($client);
+$client = new LINEBotTiny($channelAccessToken, $channelSecret);
+     echo  $client->sign("events") ;
 
-        $hash = hash_hmac('sha256', "events", $channelSecret, true);
-        $signature = base64_encode($hash);
-        echo  $signature ;
+
+
+        // $hash = hash_hmac('sha256', "events", $channelSecret, true);
+        // $signature = base64_encode($hash);
+        // echo  $signature ;
+
+
 // echo "sign : ". $client->sign("events");
 // // echo "client : ".$client ;
 // foreach ($client->parseEvents() as $event) {
