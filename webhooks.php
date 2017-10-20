@@ -15,4 +15,29 @@ $channelSecret = '75c03f392f6e53d662d6f5a8db9e421f';
 
 
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
-echo $client ;
+foreach ($client->parseEvents() as $event) {
+    switch ($event['type']) {
+        case 'message':
+            $message = $event['message'];
+            switch ($message['type']) {
+                case 'text':
+                    $client->replyMessage(array(
+                        'replyToken' => $event['replyToken'],
+                        'messages' => array(
+                            array(
+                                'type' => 'text',
+                                'text' => $message['text']
+                            )
+                        )
+                    ));
+                    break;
+                default:
+                    error_log("Unsupporeted message type: " . $message['type']);
+                    break;
+            }
+            break;
+        default:
+            error_log("Unsupporeted event type: " . $event['type']);
+            break;
+    }
+};
