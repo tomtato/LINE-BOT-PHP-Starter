@@ -26,7 +26,7 @@ $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 // echo "user id : ".$userId ;
 // // echo "client : ".$client ;
 echo $client->replyMessage("testt");
-var_dump($client->parseEvents());
+// var_dump($client->parseEvents());
 // foreach ($client->parseEvents() as $event) {
 //     switch ($event['type']) {
 //         case 'message':
