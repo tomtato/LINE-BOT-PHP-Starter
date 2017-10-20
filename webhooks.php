@@ -1,6 +1,7 @@
 <?php // callback.php
 
 require "vendor/autoload.php";
+require_once('./LINEBotTiny.php');
 
 $channelAccessToken = "qFYA2+S09Lq3O63m8YkZQfS7Q5c3MUBgi70fvM7IMCvVMU1qvJ+UbVWJtHnonKAnCWfErIDro07BnZNggJmXJChXTIlMPo8LRJ+n1LEgbRViXziTGtdULF4TXqNDretymx0c/7xoEW/jGKM2rJcQHQdB04t89/1O/w1cDnyilFU="; 
 
