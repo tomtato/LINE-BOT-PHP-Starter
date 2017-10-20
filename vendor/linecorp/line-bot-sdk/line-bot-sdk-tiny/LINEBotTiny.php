@@ -91,7 +91,7 @@ class LINEBotTiny
              return "Invalid request body: missing events property";
             // exit();
         }
-        return $data['events'];
+        return "data : ".$data['events'];
     }
 
     public function replyMessage($message)
