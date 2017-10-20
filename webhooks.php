@@ -25,8 +25,8 @@ $profil = $client->profil($userId);
 // $message 	= $client->parseEvents()[0]['message'];
 // echo "user id : ".$userId ;
 // // echo "client : ".$client ;
-// echo $profil ;
-var_dump($client->parseEvents());
+echo $userId ;
+// var_dump($client->parseEvents());
 // foreach ($client->parseEvents() as $event) {
 //     switch ($event['type']) {
 //         case 'message':
