@@ -64,7 +64,7 @@ class LINEBotTiny
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);
             error_log("Method not allowed");
-            return "Method not allowed"
+            return "Method not allowed";
             // exit();
         }
 
@@ -73,14 +73,14 @@ class LINEBotTiny
         if (strlen($entityBody) === 0) {
             http_response_code(400);
             error_log("Missing request body");
-            return "Missing request body"
+            return "Missing request body";
             // exit();
         }
 
         if (!hash_equals($this->sign($entityBody), $_SERVER['HTTP_X_LINE_SIGNATURE'])) {
             http_response_code(400);
             error_log("Invalid signature value");
-              return "Invalid signature value"
+              return "Invalid signature value";
             // exit();
         }
 
@@ -88,7 +88,7 @@ class LINEBotTiny
         if (!isset($data['events'])) {
             http_response_code(400);
             error_log("Invalid request body: missing events property");
-             return "Invalid request body: missing events property"
+             return "Invalid request body: missing events property";
             // exit();
         }
         return $data['events'];
