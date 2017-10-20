@@ -112,7 +112,7 @@ class LINEBotTiny
         }
     }
 
-    private function sign($body)
+    public function sign($body)
     {
         $hash = hash_hmac('sha256', $body, $this->channelSecret, true);
         $signature = base64_encode($hash);
