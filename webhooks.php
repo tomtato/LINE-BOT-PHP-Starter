@@ -33,6 +33,7 @@ if (strpos($http_response_header[0], '200') === false) {
     http_response_code(500);
     error_log("Request failed: " . $response);
 }
+var_dump($response );
 // echo  $client->sign("events") ;
 
 // $userId 	= $client->parseEvents()[0]['source']['userId'];
