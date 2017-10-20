@@ -17,7 +17,7 @@ $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 echo  $client->sign("events") ;
 
 $userId 	= $client->parseEvents()[0]['source']['userId'];
-echo "user id : "$userId ;
+echo "user id : ".$userId ;
 // // echo "client : ".$client ;
 // foreach ($client->parseEvents() as $event) {
 //     switch ($event['type']) {
