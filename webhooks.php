@@ -3,7 +3,7 @@
 require "vendor/autoload.php";
 
 //Read request body
-$body = "events";
+$body = file_get_contents('php://input');
 
 $api_secret = '75c03f392f6e53d662d6f5a8db9e421f';
 
