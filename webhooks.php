@@ -6,12 +6,17 @@ $httpRequestBody = "qFYA2+S09Lq3O63m8YkZQfS7Q5c3MUBgi70fvM7IMCvVMU1qvJ+UbVWJtHno
 
 $channelSecret = '75c03f392f6e53d662d6f5a8db9e421f';
 
-$hash = hash_hmac('sha256', $httpRequestBody, $channelSecret, true);
-$signature = base64_encode($hash);
+// $hash = hash_hmac('sha256', $httpRequestBody, $channelSecret, true);
+// $signature = base64_encode($hash);
 
-// Compare X-Line-Signature request header string and the signature
-echo $signature;
+// // Compare X-Line-Signature request header string and the signature
+// echo $signature;
 
+$sig_check = 'sha1=' . hash_hmac('sha1', Request::getContent(), $_ENV[$channelSecret]);
+if ($sig_check === Request::header('X-Line-Signature')) {  // php >=5.6 and above should use hash_equals() for comparison
+  // sigs match, do stuff
+	echo 'true';
+}
 
 // $headers = getallheaders();
 // $hubSignature = $headers['X-Line-Signature'];
