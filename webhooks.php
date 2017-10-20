@@ -3,197 +3,49 @@
 require "vendor/autoload.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
 
-$channelAccessToken = "qFYA2+S09Lq3O63m8YkZQfS7Q5c3MUBgi70fvM7IMCvVMU1qvJ+UbVWJtHnonKAnCWfErIDro07BnZNggJmXJChXTIlMPo8LRJ+n1LEgbRViXziTGtdULF4TXqNDretymx0c/7xoEW/jGKM2rJcQHQdB04t89/1O/w1cDnyilFU="; 
+$access_token = 'qFYA2+S09Lq3O63m8YkZQfS7Q5c3MUBgi70fvM7IMCvVMU1qvJ+UbVWJtHnonKAnCWfErIDro07BnZNggJmXJChXTIlMPo8LRJ+n1LEgbRViXziTGtdULF4TXqNDretymx0c/7xoEW/jGKM2rJcQHQdB04t89/1O/w1cDnyilFU=';
 
-$channelSecret = '75c03f392f6e53d662d6f5a8db9e421f';
+// Get POST body content
+$content = file_get_contents('php://input');
+// Parse JSON
+$events = json_decode($content, true);
+// Validate parsed JSON data
+if (!is_null($events['events'])) {
+	// Loop through each event
+	foreach ($events['events'] as $event) {
+		// Reply only when message sent is in 'text' format
+		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+			// Get text sent
+			$text = $event['message']['text'];
+			// Get replyToken
+			$replyToken = $event['replyToken'];
 
-// $hash = hash_hmac('sha256', $httpRequestBody, $channelSecret, true);
-// $signature = base64_encode($hash);
+			// Build message to reply back
+			$messages = [
+				'type' => 'text',
+				'text' => $text
+			];
 
-// // Compare X-Line-Signature request header string and the signature
-// echo $signature;
+			// Make a POST Request to Messaging API to reply to sender
+			$url = 'https://api.line.me/v2/bot/message/reply';
+			$data = [
+				'replyToken' => $replyToken,
+				'messages' => [$messages],
+			];
+			$post = json_encode($data);
+			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-$client = new LINEBotTiny($channelAccessToken, $channelSecret);
-//var_dump($client->parseEvents());
-//$_SESSION['userId']=$client->parseEvents()[0]['source']['userId'];
-/*
-{
-  "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
-  "type": "message",
-  "timestamp": 1462629479859,
-  "source": {
-    "type": "user",
-    "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
-  },
-  "message": {
-    "id": "325708",
-    "type": "text",
-    "text": "Hello, world"
-  }
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			$result = curl_exec($ch);
+			curl_close($ch);
+
+			echo $result . "\r\n";
+		}
+	}
 }
-*/
-$userId 	= $client->parseEvents()[0]['source']['userId'];
-$replyToken = $client->parseEvents()[0]['replyToken'];
-$timestamp	= $client->parseEvents()[0]['timestamp'];
-$message 	= $client->parseEvents()[0]['message'];
-$messageid 	= $client->parseEvents()[0]['message']['id'];
-$profil = $client->profil($userId);
-$pesan_datang = $message['text'];
-//pesan bergambar
-if($message['type']=='text')
-{
-	if($pesan_datang=='1')
-	{
-		
-		
-		$balas = array(
-							'replyToken' => $replyToken,														
-							'messages' => array(
-								array(
-										'type' => 'text',					
-										'text' => 'Halo '.$profil->displayName.', Anda memilih menu 1,'
-									)
-							)
-						);
-				
-	}
-	else
-	if($pesan_datang=='2')
-	{
-		$get_sub = array();
-		$aa =   array(
-						'type' => 'image',									
-						'originalContentUrl' => 'https://medantechno.com/line/images/bolt/1000.jpg',
-						'previewImageUrl' => 'https://medantechno.com/line/images/bolt/240.jpg'	
-						
-					);
-		array_push($get_sub,$aa);	
-		$get_sub[] = array(
-									'type' => 'text',									
-									'text' => 'Halo '.$profil->displayName.', Anda memilih menu 2, harusnya gambar muncul.'
-								);
-		
-		$balas = array(
-					'replyToken' 	=> $replyToken,														
-					'messages' 		=> $get_sub
-				 );	
-		/*
-		$alt = array(
-							'replyToken' => $replyToken,														
-							'messages' => array(
-								array(
-										'type' => 'text',					
-										'text' => 'Anda memilih menu 2, harusnya gambar muncul.'
-									)
-							)
-						);
-		*/
-		//$client->replyMessage($alt);
-	}
-	else
-	if($pesan_datang=='3')
-	{
-		
-		$balas = array(
-							'replyToken' => $replyToken,														
-							'messages' => array(
-								array(
-										'type' => 'text',					
-										'text' => 'Fungsi PHP base64_encode medantechno.com :'. base64_encode("medantechno.com")
-									)
-							)
-						);
-				
-	}
-	else
-	if($pesan_datang=='4')
-	{
-		
-		$balas = array(
-							'replyToken' => $replyToken,														
-							'messages' => array(
-								array(
-										'type' => 'text',					
-										'text' => 'Jam Server Saya : '. date('Y-m-d H:i:s')
-									)
-							)
-						);
-				
-	}
-	else
-	if($pesan_datang=='6')
-	{
-		
-		$balas = array(
-							'replyToken' => $replyToken,														
-							'messages' => array(
-								array(
-										'type' => 'location',					
-										'title' => 'Lokasi Saya.. Klik Detail',					
-										'address' => 'Medan',					
-										'latitude' => '3.521892',					
-										'longitude' => '98.623596' 
-									)
-							)
-						);
-				
-	}
-	else
-	if($pesan_datang=='7')
-	{
-		
-		$balas = array(
-							'replyToken' => $replyToken,														
-							'messages' => array(
-								array(
-										'type' => 'text',					
-										'text' => 'Testing PUSH pesan ke anda'
-									)
-							)
-						);
-						
-		$push = array(
-							'to' => $userId,									
-							'messages' => array(
-								array(
-										'type' => 'text',					
-										'text' => 'Pesan ini dari medantechno.com'
-									)
-							)
-						);
-						
-		
-		$client->pushMessage($push);
-				
-	}
-	else{
-		$balas = array(
-							'replyToken' => $replyToken,														
-							'messages' => array(
-								array(
-										'type' => 'text',					
-										'text' => 'Halo.. Selamat datang di medantechno.com .        Untuk testing menu pilih 1,2,3,4,5 ... atau stiker'
-									)
-							)
-						);
-						
-	}
-}else if($message['type']=='sticker')
-{	
-	$balas = array(
-							'replyToken' => $replyToken,														
-							'messages' => array(
-								array(
-										'type' => 'text',									
-										'text' => 'Terimakasih stikernya... '										
-									
-									)
-							)
-						);
-						
-}
- 
-$result =  json_encode($balas);
-//$result = ob_get_clean();
-file_put_contents('./balasan.json',$result);
-$client->replyMessage($balas);
+echo "OK";
