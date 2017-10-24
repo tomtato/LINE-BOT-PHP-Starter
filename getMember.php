@@ -11,8 +11,8 @@ $channelSecret = '75c03f392f6e53d662d6f5a8db9e421f';
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
-// $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello');
-$response = $bot->getRoomMemberProfile(, $textMessageBuilder);
+$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello world');
+$response = $bot->getRoomMemberProfile('Re8548faf3a93578c1fe6975196d203ca', 'Uffa138efe037e6e889d0b0f4a871c005');
 
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
